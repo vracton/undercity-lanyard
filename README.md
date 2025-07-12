@@ -8,9 +8,8 @@ __Note : only works on macos :/__
     ```bash
     git clone
     ```
-2. You need anaconda installed & arduino-cli, if you don't have it, you can install it with homebrew
+2. You need anaconda installed & arduino-cli. Install anaconda 
     ```bash
-    brew install --cask anaconda
     # arduino cli
     brew install arduino-cli
     ```

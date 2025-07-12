@@ -69,7 +69,7 @@ echo "Please press the boot button on the device and press enter when plugged in
 # Wait for the user to press enter
 read -p "Press enter to continue..."
 # Upload the compiled binary to the device
-cp build/GDEY029T94_Arduino.ino.uf2 /Volumes/RP2350/
+cp build/undercity-lanyard.ino.uf2 /Volumes/RP2350/
 if [ $? -ne 0 ]; then
     echo "Upload failed. Please check the device connection."
     exit 1
