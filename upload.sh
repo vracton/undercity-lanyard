@@ -1,4 +1,11 @@
+#!/bin/bash
+
 echo "welcome to undercity broken lanyard upload script"
+
+rm img.png
+rm img_resized.png
+rm newbadge.bmp
+
 
 # Ask for name of the user
 read -p "Please enter your name: " name
@@ -8,18 +15,46 @@ read -p "Please enter your slack handle: @" slack_handle
 echo "Thank you, $slack_handle! Let's proceed with the upload."
 # Change the img to add the text
 
-# Enter a custom font path or use a default one
-FONT_PATH="./font.ttf"
-if [ ! -f "$FONT_PATH" ]; then
-    echo "Font file not found at $FONT_PATH. Please provide a valid font file."
-    exit 1
+# Optional pronouns
+read -p "any text you want to add?: " pronouns
+
+read -p "any image you want to add? (res is broken u know it + .png only + path pliz) : " image_url
+# Download the image if provided
+
+if [ -n "$image_url" ]; then
+    cp "$image_url" img.png
+else
+    echo "no img, you're not funni"
 fi
+
+# if img exists, resize it to 64x64
+
+if [ -f img.png ]; then
+    echo "Resizing image to 64x64..."
+    magick img.png -resize 64x64 img_resized.png
+else
+    echo "Image not found, skipping resize."
+fi
+
+
+# Img
+# Calculate the width of the name text to position pronouns correctly
+name_width=$(magick -font ./font.ttf -pointsize 25 -size 1000x100 xc:transparent -annotate +0+0 "$name" -trim info: | cut -d' ' -f3 | cut -d'x' -f1)
+pronoun_x=$((20 + name_width + 20))  # Add 10 pixels spacing between name and pronouns
 
 magick badge.bmp \
   -font ./font.ttf -pointsize 25 -fill black \
   -annotate +20+30 "$name" \
   -annotate +20+60 "@$slack_handle" \
+  -pointsize 15 -font ./bankfont.ttf -annotate +${pronoun_x}+30 "$pronouns" \
   newbadge.bmp
+
+# if the img exists, overlay it on the badge
+
+if [ -f img_resized.png ]; then
+    echo "Overlaying image on the badge..."
+    magick newbadge.bmp img_resized.png -geometry +220+5 -composite newbadge.bmp
+fi
 
 # Convert it to a format suitable for the device
 
