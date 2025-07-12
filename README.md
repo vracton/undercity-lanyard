@@ -12,6 +12,10 @@ __Note : only works on macos :/__
     ```bash
     # arduino cli
     brew install arduino-cli
+
+    arduino-cli config add board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+
+    arduino-cli lib install "Adafruit NeoPixel"
     ```
 3. Just run the script
     ```bash
