@@ -22,3 +22,5 @@ __Note : only works on macos :/__
 4. Follow the instructions and yay!
 
 ## Wooo
+
+<img width="547" height="720" alt="image" src="https://github.com/user-attachments/assets/4808eedb-61ba-4868-983b-0e15dcd37818" />
