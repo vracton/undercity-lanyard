@@ -8,10 +8,18 @@ import subprocess
 if os.name != 'nt':
     subprocess.run("brew install arduino-cli", shell=True)
 
+subprocess.run("arduino-cli config add board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json", shell=True)
+
 subprocess.run("arduino-cli core install rp2040:rp2040", shell=True)
 subprocess.run("arduino-cli lib install \"Adafruit NeoPixel\"", shell=True)
 
 print("Welcome to undercity hopefully fixed lanyard upload script")
+
+try:
+    for f in os.listdir("./build"):
+        os.remove(os.path.join("./build", f))
+except FileNotFoundError:
+    pass
 
 try:
     os.remove("img.png")
