@@ -1,8 +1,16 @@
 # Undercity eink lanyard
+fixed for windows
 
 ## How to flash it
 
-__Note : only works on macos :/__
+### Windows
+
+1. Install a venv ``python -m venv .venv``
+2. Run  ``.venv\Scripts\activate``
+3. Run ``pip install -r req.txt``
+4. Run ``python run.py`` and follow the text
+
+### macOS
 
 1. Clone the repo
     ```bash
@@ -23,7 +31,3 @@ __Note : only works on macos :/__
     ./upload.sh
     ```
 4. Follow the instructions and yay!
-
-## Wooo
-
-<img width="547" height="720" alt="image" src="https://github.com/user-attachments/assets/4808eedb-61ba-4868-983b-0e15dcd37818" />
